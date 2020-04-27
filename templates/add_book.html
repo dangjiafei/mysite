@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <title>添加书</title>
+</head>
+<body>
+
+{% include 'nav.html' %}
+
+<div class="container" style="margin-top: 80px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1 class="text-center">添加书</h1>
+            </div>
+
+            <form class="form-horizontal" action="/add_book/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="book_name" class="col-sm-1 control-label">名称：</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="book_name" id="book_name" class="form-control" placeholder="名称">
+                    </div>
+
+                    <label for="book_price" class="col-sm-1 control-label">价格：</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="book_price" id="book_price" class="form-control" placeholder="价格">
+                    </div>
+
+                    {# 需要在这里添加一个出版社的options，提供给用户选择 #}
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">
+                            <label class="control-label">出版社名称：</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select name="press_id" class="form-control">
+                                {% for press in press_data_list %}
+                                    <option value="{{ press.id }}">{{ press.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input type="submit" class="btn btn-default">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <p style="color: red; text-align: center">{{ add_error_msg }}</p>
+    </div>
+</div>
+</body>
+</html>

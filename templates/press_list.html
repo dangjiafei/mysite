@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block press_active %}
+    active
+{% endblock %}
+{% block container %}
+    <h1 class="page-header">出版社</h1>
+
+    <!--面板start-->
+    <div class="panel panel-default">
+        <div class="panel-heading">出版社列表</div>
+        <div class="panel-body">
+            <!--标个上面的那一行start-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索">
+                        <span class="input-group-btn">
+        <button class="btn btn-default" type="button">搜索</button>
+      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-md-1 pull-right">
+                    <a class="btn btn-success pull-right" href="/add_press/">添加出版社</a>
+                </div>
+
+            </div>
+            <!--标个上面的那一行end-->
+
+            <!--表格start-->
+            <div class="table-box">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">出版社id</th>
+                        <th class="text-center">出版社名称</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in res %}
+                        <tr class="text-center">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.name }}</td>
+                            <td>
+                                <div class="col-md-6">
+                                    <a class="btn btn-success pull-right" href="/edit_press/?id={{ i.id }}">
+                                        <i class="fa fa-pencil" aria-hidden="true"> 编辑</i>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a class="btn btn-danger pull-left" href="/delete_press/{{ i.id }}/">
+                                        <i class="fa fa-trash-o fa-lg"></i> 删除</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!--表格end-->
+
+            <!--分页start-->
+            {% load ooxx %}
+            {% pagination 10 1 %}
+            <!--分页end-->
+
+        </div>
+    </div>
+    <!--面板end-->
+
+{% endblock %}

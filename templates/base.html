@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://v3.bootcss.com/examples/dashboard/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+
+    <title>列表页面</title>
+
+    <!-- Bootstrap core CSS -->
+    {% load static %}
+    <link href="{% static 'template_Bootstrap_files/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- 当前页面用到的自定义样式 -->
+    <link href="{% static 'template_Bootstrap_files/dashboard.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.css' %}">
+</head>
+
+<body>
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="{% block press_active %}{% endblock %}"><a href="/press_list/">出版社列表</a></li>
+                <li class="{% block book_active %}{% endblock %}"><a href="/book_list/">书籍列表</a></li>
+                <li class="{% block author_active %}{% endblock %}"><a href="/author_list/">作者列表</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block container %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'template_Bootstrap_files/jquery.min.js' %}"></script>
+<script src="{% static 'template_Bootstrap_files/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
